@@ -84,36 +84,33 @@ impl Cursor {
         let state = self.state.clone();
         let mut mut_state = self.state.borrow_mut();
         mut_state.reset_to(AnimPhase::Shown);
-        mut_state.timer = Some(glib::timeout_add(500, move || anim_step(&state)));
+        // mut_state.timer = Some(glib::timeout_add(500, move || anim_step(&state)));
     }
 
     pub fn reset_state(&mut self) {
-        if self.state.borrow().anim_phase != AnimPhase::Busy {
-            // self.start();
-            self.state.borrow_mut().reset_to(AnimPhase::NoFocus);
-        }
+        /*if self.state.borrow().anim_phase != AnimPhase::Busy {
+            self.start();
+        }*/
     }
 
     pub fn enter_focus(&mut self) {
-        if self.state.borrow().anim_phase != AnimPhase::Busy {
-            // self.start();
-            self.state.borrow_mut().reset_to(AnimPhase::NoFocus);
-        }
+        /*if self.state.borrow().anim_phase != AnimPhase::Busy {
+            self.start();
+        }*/
     }
 
     pub fn leave_focus(&mut self) {
-        if self.state.borrow().anim_phase != AnimPhase::Busy {
+        /*if self.state.borrow().anim_phase != AnimPhase::Busy {
             self.state.borrow_mut().reset_to(AnimPhase::NoFocus);
-        }
+        }*/
     }
 
     pub fn busy_on(&mut self) {
-        self.state.borrow_mut().reset_to(AnimPhase::Busy);
+        // self.state.borrow_mut().reset_to(AnimPhase::Busy);
     }
 
     pub fn busy_off(&mut self) {
         // self.start();
-        self.state.borrow_mut().reset_to(AnimPhase::NoFocus);
     }
 
     pub fn draw(
