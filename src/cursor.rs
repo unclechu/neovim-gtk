@@ -89,13 +89,15 @@ impl Cursor {
 
     pub fn reset_state(&mut self) {
         if self.state.borrow().anim_phase != AnimPhase::Busy {
-            self.start();
+            // self.start();
+            self.state.borrow_mut().reset_to(AnimPhase::NoFocus);
         }
     }
 
     pub fn enter_focus(&mut self) {
         if self.state.borrow().anim_phase != AnimPhase::Busy {
-            self.start();
+            // self.start();
+            self.state.borrow_mut().reset_to(AnimPhase::NoFocus);
         }
     }
 
@@ -110,7 +112,8 @@ impl Cursor {
     }
 
     pub fn busy_off(&mut self) {
-        self.start();
+        // self.start();
+        self.state.borrow_mut().reset_to(AnimPhase::NoFocus);
     }
 
     pub fn draw(
@@ -235,7 +238,7 @@ fn anim_step(state: &Arc<UiMutex<State>>) -> glib::Continue {
                 None
             }
         }
-        AnimPhase::NoFocus => None, 
+        AnimPhase::NoFocus => None,
         AnimPhase::Busy => None,
     };
 
